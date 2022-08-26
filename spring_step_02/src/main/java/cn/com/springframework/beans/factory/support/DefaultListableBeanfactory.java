@@ -6,6 +6,7 @@ import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @Author yuezp
@@ -14,7 +15,9 @@ import java.util.Map;
  */
 public class DefaultListableBeanfactory extends AbstractAutowireCapableBeanfactory implements BeanDefinitionRegistry{
 
+    //后期会优化为ConcurrentHashMap
     private Map<String, BeanDefinition> beanDefinitionMap = new HashMap<>();
+
     @Override
     protected BeanDefinition getBeanDefinition(String beanName) throws BeansException {
         BeanDefinition beanDefinition = beanDefinitionMap.get(beanName);
